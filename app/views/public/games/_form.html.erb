@@ -6,7 +6,8 @@
 <div class="form-grup">
   <%= f.label :category,"カテゴリー"%>
   <%=f.select_button :serect_category%>
-  <%= f.select :category_id, Category .category_i18n.invert%>
+   <%= f.select :model, options_for_select({"RPG" =>"rpg","アクション"=>"action","シューティング=> shooting",
+   "アドベンチャー"=>"adventure","音楽"=>"music","パズル"=>"pazule","スポーツ"=>"sport","カードゲーム"=>"tcg", })
 </div>
 <div class="form-group">
   <%= f.label:review,"レビュー"%>
