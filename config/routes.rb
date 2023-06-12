@@ -13,13 +13,13 @@ Rails.application.routes.draw do
    resources :category, only: [:index,:show,:edit,:update]
  end
  #ゲスト用
- devise_scope :member do
+ devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
  scope module: :public do
    root :to =>"homes#top"
    get "about" => "homes#top"
-   resources :member, only: [:index,:show,:edit,:update]
+   resources :user, only: [:index,:show,:edit,:update]
    resource :relationships, only: [:create, :destroy]
    get 'followings' => 'relationships#followings', as: 'followings'
    get 'followers' => 'relationships#followers', as: 'followers'
@@ -27,7 +27,8 @@ Rails.application.routes.draw do
    resources :coments, only: [:create,:destroy]
    resources :category, only: [:index,:create,:show,:update]
    resource :favorites, only:[:create,:destroy]
+   resources :genres, only: [:show]
  end
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
