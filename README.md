@@ -1,24 +1,42 @@
-# README
+# gameclub
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+ゲーム全体ののレビューサイト
 
-Things you may want to cover:
+会員同士コメントなどやり取りが行えおすすめを紹介など行える
 
-* Ruby version
 
-* System dependencies
+### テーマを選んだ理由
+ゲーム全体を取り扱っているレビューサイトは少ないと感じていた
+自分自身がゲームをプレイした際に苦手なタイプのゲームや面白いと感じれないゲームを触れたことがあり
+未然に防ぐことが可能であると考え購入意欲の促進や売上の向上につながると考えた。
+同カテゴリーの別のゲームをやっていた層が新たな層として獲得にもつながる。
+感染症が流行っていたこともあり新しくオンラインでゲームやるなど考えられレビューサイトを見る機会が増えている
 
-* Configuration
+### ターゲットユーザ
+- 昔ゲームをやっていた人
 
-* Database creation
+- 新作に触りたいという方
 
-* Database initialization
+- 古いゲームをしたい方
 
-* How to run the test suite
+- リマスター版の購入を検討している方
 
-* Services (job queues, cache servers, search engines, etc.)
+### 主な利用シーン
+- 新しくゲームを始めたい指標
 
-* Deployment instructions
+- 購入を考えた際の指標
+### 著作権について
+-　音楽や画像と動画の使用はと無しする
 
-* ...
+-　許可されているもの除くネタバレを含む内容の記載はなし作成する
+
+## 設計書
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
