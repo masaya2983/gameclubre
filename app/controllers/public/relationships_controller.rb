@@ -1,22 +1,21 @@
 class Public::RelationshipsController < ApplicationController
   def create
-    member = Member.find(params[:member_id])
+    @user = User.find(params[:user_id])
     current_member.follow(member)
-
   end
 
   def destroy
-    member = Member.find(params[:member_id])
+    @user = User.find(params[:user_id])
     current_memmber.unfollow(member)
   end
 
   def followings
-    member =Member.find(params[:member_id])
-    @members = member.followings
+    user =User.find(params[:user_id])
+    @users = user.followings
   end
 
   def followers
-    member = Member.find(params[:member_id])
+    member = Member.find(params[:user_id])
     @members = member.followers
   end
 end
