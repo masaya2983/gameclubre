@@ -36,7 +36,8 @@ class Public::GamesController < ApplicationController
  end 
  
  def destroy
-  @game.destroy
+  @game.destro
+  redirect_to game_path
  end
  
  private
@@ -44,5 +45,10 @@ class Public::GamesController < ApplicationController
  def game_params
      params.require(:game).permit(:tittle, :body)
  end
- 
+  def ensure_correct_user
+    @game = Game.find(params[:id])
+    unless @game.user == current_user
+      redirect_to books_path
+    end
+  end
 end
