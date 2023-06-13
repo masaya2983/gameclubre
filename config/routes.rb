@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     registrstions: "publick/ registrstions",
     sessions: 'publick/sessions'
   }
+  devise_scope :user do
+  get '/users/sign_out' => 'devise/sessions#destroy'
+  end
   namespace :admin do
    root :to => "homes#top"
    resources :members, only: [:index,:show,:edit,:update]
@@ -20,7 +23,7 @@ Rails.application.routes.draw do
   post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
    root :to =>"homes#top"
    get "about" => "homes#top"
-   resources :user, only: [:index,:show,:edit,:update]
+   resources :users, only: [:index,:show,:edit,:update]
    resource :relationships, only: [:create, :destroy]
    get 'followings' => 'relationships#followings', as: 'followings'
    get 'followers' => 'relationships#followers', as: 'followers'
