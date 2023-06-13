@@ -3,10 +3,11 @@ class Public::GamesController < ApplicationController
   def show
    @gane = Game.find(params[:id])
    @comment = Commemt.new
+   @comments = Comment.all.page(params[:page])
   end
   
   def index
-   @games = Game.all
+   @games = Game.all.page(params[:page])
    @game = Game.new
   end
  
@@ -14,8 +15,10 @@ class Public::GamesController < ApplicationController
   @game = Game.new(game_params)
   @game.member_id = current_member.id
   if @game.save
+   redirect_to game_path(@game), nothice: "投稿完了."
   else
-  
+   @games = Gmame.all
+   render 'index'
   end
       
  end
@@ -26,8 +29,9 @@ class Public::GamesController < ApplicationController
  
  def update
    if @game.update(game_params)
+     redirect_to game_path(@game), notice: "投稿完了."
    else
-   
+    render "edit"
    end
  end 
  
