@@ -4,6 +4,11 @@ class Public::GamesController < ApplicationController
    @gane = Game.find(params[:id])
    @comment = Commemt.new
    @comments = Comment.all.page(params[:page])
+   if @game.status_private? && @game.user !=current_user
+   respond_to do |format|
+    format.html { redirect_to games_path, notice: 'このページにはアクセスできません' }
+    end
+   end
   end
 
   def index
@@ -42,6 +47,9 @@ class Public::GamesController < ApplicationController
  end
 
  private
+   def set_post
+      @game = Game.find(params[:id])
+   end
 
  def game_params
      params.require(:game).permit(:tittle,:content,:image,:status, :body)
