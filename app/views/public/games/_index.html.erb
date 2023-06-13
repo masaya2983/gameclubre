@@ -19,7 +19,7 @@
       <td class=<%= "favorite-" + game.id.to_s %> >
        <%= render "favorites/btn",game:game %>
        </td>
-        <td><%= render "comments/counter", game: game %></td>
+        <td><%= render "public/comments/counter", game: game %></td>
     </tr>
   <% end %>
   
