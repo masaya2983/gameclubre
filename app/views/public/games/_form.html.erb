@@ -3,11 +3,11 @@
   <%= f.label :title ,"タイトル"%>
   <%= f.text_field :title, class: 'form-control game_title' %>
 </div>
+   
 <div class="form-grup">
   <%= f.label :category,"カテゴリー"%>
   <%=f.select_button :serect_category%>
-   <%= f.select :model, options_for_select({"RPG" =>"rpg","アクション"=>"action","シューティング=> shooting",
-   "アドベンチャー"=>"adventure","音楽"=>"music","パズル"=>"pazule","スポーツ"=>"sport","カードゲーム"=>"tcg", })
+   <%= f.select :model, options_for_select({"RPG" =>"rpg", "アクション"=>"action", "シューティング=> shooting", "アドベンチャー"=>"adventure", "音楽"=>"music", "パズル"=>"pazule"," スポーツ"=>"sport", "カードゲーム"=>"tcg", "複数"=>"mixe" }) %>
 </div>
 <div class="form-group">
   <%= f.label:review,"レビュー"%>

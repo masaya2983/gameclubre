@@ -11,6 +11,8 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+import "script.js"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+window.$ = window.jQuery = require('jquery');
