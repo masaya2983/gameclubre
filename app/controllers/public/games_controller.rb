@@ -48,7 +48,7 @@ class Public::GamesController < ApplicationController
   def ensure_correct_user
     @game = Game.find(params[:id])
     unless @game.user == current_user
-      redirect_to books_path
+      redirect_to games_path
     end
   end
 end
