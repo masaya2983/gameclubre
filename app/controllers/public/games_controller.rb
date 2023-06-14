@@ -20,11 +20,12 @@ class Public::GamesController < ApplicationController
   @game = Game.new(game_params)
   @game.user_id = current_user.id
   if @game.save
-   format.html { redirect_to @game,nothice: "新規投稿完了."}
-   format.json { render :show, status: :created, location: @game}
+    redirect_to @game,nothice: "新規投稿完了."
+   render :show
   else
-  format.html{render 'index'}
-   format.json{render json: @game.errors, status: :unprocessable_entity}
+   @games =Game.all
+  render 'index'
+
   end
 
  end

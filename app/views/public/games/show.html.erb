@@ -5,3 +5,20 @@
       
        <h2 class="mt-3">New game</h2>
       <%= render 'publick/gamess/form', book: @book %>
+      
+      
+      
+       <td>
+            <div id="star-rate<%= @game.id%>"></td>
+             <script>
+              $('#star-rate<%= @game.id %>').empty();
+              $('#star-rate<%= @game.id%>').raty({
+                 size      : 36,
+                 starOff   : '<%= asset_path('star-off.png') %>',
+                 starOn    : '<%= asset_path('star-on.png') %>',
+                 half      : false,
+                 readOnly: true,
+                 score: <%= @game.star %>,
+               });
+             </script>
+          </td>

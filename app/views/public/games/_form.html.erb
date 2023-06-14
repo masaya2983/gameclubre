@@ -15,20 +15,22 @@
   <%= f.label :title ,"タイトル"%>
   <%= f.text_field :title, class: 'form-control game_title' %>
 </div>
- 
+
 <div class="form-grup row" id="star">
  <%= f.label :star,'評価',class:'col-md-3 col-form-label' %>
  <%= f.hidden_field :star, id: :review_star %>
+ <div id ="post_raty"></div>
 </div>
 <script>
-    $('#star').empty();
-  $('#star').raty({
-      size : 36,
-      starOff: '<%= asset_path('star-off.png')%>',
-      starOn : '<%= asset_path('star-on.png')%>'
-       scoreName: 'game[star]',
-      half: false,
-  })
+$(document).on('turbolinks:load', function() {
+    let elem = document.querySelector('#post_raty');
+    let opt = {
+        starOn: "<%= asset_path('star-on.png')%>",
+        starOff: "<%= asset_path('star-off.png')%>",
+        scoreName:'game[star]',
+    };
+   raty(elem,opt);
+});
 </script>
 
   </div>

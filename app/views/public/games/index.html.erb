@@ -1,14 +1,15 @@
 <div class='container px-5 px-sm-0'>
-  <%= render 'layouts/errors',obj @game %>
+  <%= render 'layouts/errors', obj: @game %>
   <div class='row'>
     <div class='col-md-3'>
-      
-       <h2 class="mt-3"></h2>
-      <%=render 'form', game: @game %>
+
+       <h2 class="mt-3">New game</h2>
+       
+      <%=render 'public/games/form', game: @game %>
       <div class='col-md-8 offset-md-1'>
-      
-      
-      <%= render 'index', games : @games%>
+
+
+      <%= render 'public/games/index', games: @games%>
       </div>
   </div>
 </div>
