@@ -52,7 +52,7 @@ class Public::GamesController < ApplicationController
    end
 
  def game_params
-     params.require(:game).permit(:tittle,:content,:image,:status, :body)
+     params.require(:game).permit(:tittle,:content,:image,:status, :body, :star)
  end
   def ensure_correct_user
     @game = Game.find(params[:id])
