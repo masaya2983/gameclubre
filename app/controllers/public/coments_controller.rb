@@ -1,8 +1,9 @@
-class Public::CommentsController < ApplicationController
+class Public::ComentsController < ApplicationController
   
  def create
-  game = Game.find(params[:id])
-  @comment = current_member.comments.new(game_comment_params)
+   game = Game.find(params[:game_id])
+  @comment = current_user.comments.new(game_comment_params)
+  @comment.game_id = game.id
   @comment.save
  end
 

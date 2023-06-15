@@ -5,17 +5,18 @@ class Public::UsersController < ApplicationController
   @game = Game.new
   @games= Game.all.page(params[:page])
   end
-  
+
   def index
-  @user =User.all
+  @users =User.all
   @game = Game.new
-  
+
   end
-  
+
   def edit
-    
+   @user = User.find(params[:id])
+    @game = Game.new
   end
-  
+
  def update
  if @user.update(user_params)
       redirect_to user_path(@user), notice: "You have updated user successfully."
@@ -23,9 +24,9 @@ class Public::UsersController < ApplicationController
    render "edit"
  end
  end
- 
+
  private
-  
+
 def member_params
   params.require(:user).permit(:name, :introduction, :profile_image)
 end
