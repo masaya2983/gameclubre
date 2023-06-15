@@ -24,6 +24,8 @@ class Public::GamesController < ApplicationController
 
  def create
   @game = Game.new(game_params)
+  if params[:game]
+    if @game_recipe.
   @game.user_id = current_user.id
   if @game.save
     redirect_to @game,nothice: "新規投稿完了."
@@ -59,12 +61,12 @@ class Public::GamesController < ApplicationController
  end
 
  private
-   def set_post
+   def set_game
       @game = Game.find(params[:id])
    end
 
  def game_params
-     params.require(:game).permit(:tittle,:content,:image,:status, :review, :star)
+     params.require(:game).permit(:tittle,:content,:image,:status, :review, :star,:category)
  end
   def ensure_correct_user
     @game = Game.find(params[:id])

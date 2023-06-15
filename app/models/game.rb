@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  belongs_to :member
+  belongs_to :user
   has_many :coments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
@@ -7,6 +7,8 @@ class Game < ApplicationRecord
   scope :old, -> {order(created_at: :asc)}
   scope :star_count, -> {order(star: :desc)}
 
+  validates :category,presence:true
+  
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
