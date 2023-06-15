@@ -15,6 +15,8 @@
         <% end %>
       </td>
       <td><%=link_to game.title,game, class: "game_#{game.id}" %></td>
+      <td><%= link_to game.category_id%></td>
+      <td><%= link_to game.star%></td>
       <td><%= game.review %></td>
       <td class=<%= "favorite-" + game.id.to_s %> >
        <%= render "favorites/btn",game:game %>

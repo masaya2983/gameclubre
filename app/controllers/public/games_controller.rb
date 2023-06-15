@@ -12,7 +12,13 @@ class Public::GamesController < ApplicationController
   end
 
   def index
-   @games = Game.all.page(params[:page])
+   if params[:latest]
+    @games = Game.latest.page(params[:page])
+   elsif params:old
+    @games=Game.old.page(params[:page])
+   else
+    @games = Game.all
+   end
    @game = Game.new
   end
 
@@ -36,8 +42,8 @@ class Public::GamesController < ApplicationController
     else
         redirect_to games_path
     end
-  end
  end
+
 
  def update
    if @game.update(game_params)

@@ -2,7 +2,11 @@ class Game < ApplicationRecord
   belongs_to :member
   has_many :coments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> {order(star: :desc)}
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
