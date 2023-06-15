@@ -12,7 +12,12 @@
     <tr>
       <td><%= image_tag game.user.get_profile_image,size:'50×50' %></td>
       <td><%= game.title %></td>
-      <td></td>
+      <td><%= game.category %></td>
+      <td><%= render "favorites/btn", game: game %></td>
+      <td>コメント数<%= game.coments.count %></td>
+      <td class ="px-0"><%= render "games/atar",book: book %></td>
     </tr>
   </tbody>
+    <% end %>
+  <% end %>
 </table>
