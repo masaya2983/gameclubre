@@ -14,6 +14,7 @@
         <%= image_tag game.user.get_profile_image, '50×50' %>
         <% end %>
       </td>
+      <td><%= l game.created_at %></td>
       <td><%=link_to game.title,game, class: "game_#{game.id}" %></td>
       <td><%= link_to game.category_id%></td>
       <td><%= link_to game.star%></td>
