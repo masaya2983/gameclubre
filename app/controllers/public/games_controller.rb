@@ -24,19 +24,22 @@ class Public::GamesController < ApplicationController
 
  def create
   @game = Game.new(game_params)
+   
   if params[:game]
+    @game.user_id = current_user.id
     if @game_recipe.
-  @game.user_id = current_user.id
+
   if @game.save
     redirect_to @game,nothice: "新規投稿完了."
-  else
+ else
    @games =Game.all
   render 'index'
-
-  end
-
+ 
  end
-
+　 end
+ end
+end
+ 
  def edit
   @game = Game.find(params[:id])
     if @game.user == current_user
