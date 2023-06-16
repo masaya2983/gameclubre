@@ -2,34 +2,30 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h3>
-       <%= @user.name %>さんの編集
+       <%= @game.title %>
       </h3>
-        <table class="table table-hover table-inverse">
+      <table class="table table-hover table-inverse">
           <tr>
-            <th>UserID</th>
-            <td> <%= @user.id %></td>
+            <th>GameID</th>
+             <td><%= @game.id %></td>
           </tr>
-        </table>
-      <%= form_with model: @user,url admin_user_path(@user.id),method: :patch, local:true do |f| %>
+      </table>
+      <%= form_with model: @game,url admin_game_path(@game.id),method: :patch, local:true do |f| %>
        <table class="table-hover table-inverse">
          <tr>
-           <th><%= f.label :name "名前" %></th>
-           <td><%= f.text_field :name %></td>
+           <th>><%= f.label :title "ゲーム名" %></th>
+           <td><%= f.text_field :title %></td>
          </tr>
-         <tr>
-           <th><%= label :email "メールアドレス" %></th>
-           <td><%= f.text_field :email %></td>
-           <td></td>
-         </tr>
-         <tr>
+           <th><%= f.label :review "レビュー" %></th>
+           <td><%= f.text_area :review %></td>
            <th><%= f.label :is_deleted, "ステータス"%></th>
-           <td>
+            <td>
               <%= f.radio_button :is_deleted, false %>
              <%= f.radio_button :is_deleted, "有効" %>
            </td>
            <td>
              <%= f.radio_button :is_deleted, true %>
-             <%= f.label :is_deleted, "退会" %>
+             <%= f.label :is_deleted, "削除" %>
            </td>
          </tr>
          <td><%= f.submit "変更を保存", class:'btn-success'%></td>

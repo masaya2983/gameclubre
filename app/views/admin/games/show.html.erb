@@ -1,1 +1,25 @@
-<th></th>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h3><%= @game.title %></h3>
+       <table class="table table-hover table-inverse">
+        <tr>
+          <th>ゲームID</th>
+        </tr>
+         <tr>
+          <th>ゲーム名</th>
+          <td><%= @game.title %></td>
+        </tr>
+        <tr>
+         <th>レビュー</th>
+         <td><%= @game.review %></td>
+        <th>評価</th>
+         <td><%= @game.star %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "編集する",edit_admin_game_path(@game.id), class:"btn btn-success" %></td>
+        </tr>
+      </table>
+    </diV>
+  </div>
+</div>
