@@ -1,0 +1,2 @@
+module Adomin::UsersHelper
+end
