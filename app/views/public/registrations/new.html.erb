@@ -6,16 +6,16 @@
        <%= form_with model: @user,url: user_registration_path, id: 'new_user', local: true do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
           <div class="form-group row">
-           <%= f.label :name %>
+           <%= f.label :name,"名前" %>
              <%= f.text_field :name, autofocus: true, class: "name" %>
           </div>
                 <div class="field">
-                  <%= f.label :email %><br />
+                  <%= f.label :email,"Email" %><br />
                     <%= f.email_field :email, autofocus: true, class: "email" %>
           </div>
 
           <div class="field">
-           <%= f.label :password %>
+           <%= f.label :password,"パスワード" %>
             <% if @minimum_password_length %>
              <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %><br />
@@ -23,7 +23,7 @@
            </div>
 
           <div class="field">
-            <%= f.label :password_confirmation %><br />
+            <%= f.label :password_confirmation,"パスワード" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
