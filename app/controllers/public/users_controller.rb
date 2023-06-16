@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
-  
+  before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit]
   def show
   @user = User.find(params[:id])
   @games = @user.games
@@ -25,11 +26,11 @@ class Public::UsersController < ApplicationController
    render "edit"
  end
  end
- 
+
  def check
    @user = current_customer
  end
- 
+
  def withdrawal
    @user = current_user
     #is_deletedカラムをtrueに変更することにより削除フラグを立てる
@@ -49,7 +50,7 @@ end
    unless user.id == curent_user.id
      redirect_to user_path(user.id)
    end
- 
+
  end
 
   def ensure_correct_user
@@ -57,5 +58,12 @@ end
     unless @user == current_user
       redirect_to user_path(current_user)
     end
+ def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "guestuser"
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    end
+ end
+
   end
 end

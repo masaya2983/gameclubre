@@ -16,9 +16,9 @@ Rails.application.routes.draw do
    resources :category, only: [:index,:show,:edit,:update]
  end
  #ゲスト用
- #devise_scope :user do
-   # post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
- # end
+ devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
  scope module: :public do
   post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
    root :to =>"homes#top"
