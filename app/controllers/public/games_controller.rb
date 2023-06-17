@@ -1,8 +1,8 @@
 class Public::GamesController < ApplicationController
 
   def show
-   @gane = Game.find(params[:id])
-   @coment = Comemt.new
+   @game = Game.find(params[:id])
+   @coment = Coment.new
    @coments = Coment.all.page(params[:page])
    if @game.status_private? && @game.user !=current_user
    respond_to do |format|
@@ -24,21 +24,15 @@ class Public::GamesController < ApplicationController
 
  def create
   @game = Game.new(game_params)
-
-  if params[:game]
-    @game.user_id = current_user.id
-    if @game_recipe.
-
+  @game.user_id = current_user.id
   if @game.save
-    redirect_to @game,nothice: "新規投稿完了."
- else
+   redirect_to @game,nothice: "新規投稿完了."
+  else
    @games =Game.all
-  render 'index'
-
- end
-　 end
- end
+   render 'index'
+  end
 end
+
 
  def edit
   @game = Game.find(params[:id])
@@ -59,7 +53,7 @@ end
  end
 
  def destroy
-  @game.destro
+  @game.destroy
   redirect_to games_path
  end
 
@@ -69,7 +63,7 @@ end
    end
 
  def game_params
-     params.require(:game).permit(:tittle,:content,:image,:status, :review, :star,:category)
+     params.require(:game).permit(:title,:content,:image,:status, :review, :star)#,:category_id)
  end
   def ensure_correct_user
     @game = Game.find(params[:id])

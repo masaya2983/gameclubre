@@ -5,34 +5,31 @@
 
 
        <h2 class="mt-3">New game</h2>
-      <%= render 'publick/gamess/form', book: @book %>
+      <%= render 'public/games/form', game: @game %>
 
     </div>
        <div class='col-md-8 offset-md-1'>
       <table class=table>
         <tr>
-         <td> <%= linkt_to(@game.user) do %>
+         <td> <%= link_to(@game.user) do %>
          <%= image_tag @game.user.get_profile_image, size:"100x100" %><br>
             <%= @game.user.name %>
             <% end %>
          </td>
-          <td><%= link_to @game.title, @game %></td>
-          <td><%= @game.body %></td>
+         <td> <%= @category.id %></td>
+          <td><%= link_to @game.title %></td>
+          <td><%= @game.review %></td>
           <td class=<%= "favorite-" + @game.id.to_s %> >
-            <%= render "favorites/btn", game: @game %>
+            <%# render "public/favorites/btn", game: @game %>
           </td>
-          <td><%= link_to @game.title, @game %></td>
-          <td><%= @game.body %></td>
-          <td class=<%= "favorite-" + @game.id.to_s %> >
-        </td>
-        <<% if @game.user == current_user %>
-        <td><%= link_to '編集',edit_game_path(@game), class: "btn btn-sm btn-success edit_book_#{@game.id}" %></td>
-        <td><%= link_to '削除',@game,method: :delete, date { confirm: '本当に消しますか？'}, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td>
+        <% if @game.user == current_user %>
+        <td><%= link_to '編集',edit_game_path(@game), class: "btn btn-sm btn-success edit_game_#{@game.id}" %></td>
+        <td><%= link_to '削除',@game,method: :delete, date: { confirm: '本当に消しますか？'}, class: "btn btn-sm btn-danger destroy_game_#{@game.id}" %></td>
         <% end %>
         <div class="comments-index">
-            <%= render "comments/index", game: @game %>
+            <%= render "public/coments/index", game: @game %>
         </div>
-        <%= "comments/form", game: @game, comment: @comment %>
+        <%= render "public/coments/form", game: @game, comment: @comment %>
 
     </div>
   </div>

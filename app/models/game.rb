@@ -7,7 +7,7 @@ class Game < ApplicationRecord
   scope :old, -> {order(created_at: :asc)}
   scope :star_count, -> {order(star: :desc)}
 
-  validates :category,presence:true
+  #validates :category,presence:true
   
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?

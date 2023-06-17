@@ -3,7 +3,7 @@
     <div class="col text-left">
       <h2>新規登録</h2>
 
-       <%= form_with model: @user,url: user_registration_path, id: 'new_user', local: true do |f| %>
+       <%= form_with model: resource,url: user_registration_path, id: 'new_user', local: true do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
           <div class="form-group row">
            <%= f.label :name,"名前" %>
