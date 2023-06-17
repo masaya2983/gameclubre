@@ -11,13 +11,7 @@ div class='container'>
              <th>ステータス</th>
              </tr>
           </thead>
-          <tbody>
-              <th>会員ID</th>
-             <th>氏名</th>
-             <th>メールアドレス</th>
-             <th>ステータス</th>
-           </tr>
-         </thead>
+         
          <tbody>
            <%= @games.each do |game| %>
            <tr>
@@ -28,6 +22,7 @@ div class='container'>
                 <% end %>
              </td>
              <td><%= game.review %></td>
+             <td><%= game.star %></td>
              <td>
                <% if game.is_deleted? %>
                　<P>削除</P>

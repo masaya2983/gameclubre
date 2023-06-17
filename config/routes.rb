@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
    root :to => "homes#top"
-   resources :members, only: [:index,:show,:edit,:update]
+   resources :users, only: [:index,:show,:edit,:update]
    resources :games, only: [:index,:show,:edit,:update]
    resources :category, only: [:index,:show,:edit,:update]
  end
