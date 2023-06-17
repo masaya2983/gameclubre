@@ -13,9 +13,8 @@
   <tbody>
    <% games.each do |game| %>
     <tr>
-      <td><%= link_to(game.user) do %>
+      <td>
         <%= image_tag game.user.get_profile_image %>
-        <% end %>
       </td>
       <td><%= l game.created_at %></td>
       <td><%= game.title %></td>
@@ -27,7 +26,8 @@
        <%#= render "favorites/btn",game:game %>
        </td>
         <td><%#= render "public/coments/counter", game: game %></td>
+        <td><%= link_to "show", game, class: "btn btn-success" %></td>
    　 </tr>
-  　<% end %>
+   <% end %>
 　</tbody>
 </table>

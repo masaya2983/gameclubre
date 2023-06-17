@@ -11,9 +11,9 @@
   <%= f.radio_button :status, :private %>
   <% end %>
   </div>
-  <div class="checkbox">
+  <div class="form-group">
   <%= f.label :category_id,"カテゴリー"%>
-  <%= f.select :category_id, Category.all.pluck(:name)%>
+  <%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: true }, { class: "form-control" } %>
 </div>
 
 <div class="form-grup">
@@ -33,6 +33,7 @@ $(document).on('turbolinks:load', function() {
         starOn: "<%= asset_path('star-on.png')%>",
         starOff: "<%= asset_path('star-off.png')%>",
         scoreName:'game[star]',
+        score: <%= game.star || 0 %>
     };
    raty(elem,opt);
 });

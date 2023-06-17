@@ -3,12 +3,20 @@ class ApplicationController < ActionController::Base
 
   private
 
- def after_sign_in_path_for(resource)
-    user_path(resource)
- end
+  def after_sign_in_path_for(resource)
+    if resource.class == Admin
+      admin_root_path
+    else
+      user_path(resource)
+    end
+  end
 
   def after_sign_out_path_for(resource)
-    root_path
+    if resource == :admin
+      admin_root_path
+    else
+      root_path
+    end
   end
 
 

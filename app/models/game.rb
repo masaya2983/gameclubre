@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   belongs_to :user
-  has_many :coments, dependent: :destroy
+  belongs_to :category
+  has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
   scope :latest, -> {order(created_at: :desc)}

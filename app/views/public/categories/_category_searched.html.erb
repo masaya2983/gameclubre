@@ -2,7 +2,7 @@
   <div class="search_form">
     <%= form_with url:category_search_path, local: true,method: :get do |f| %>
      <%= category = Game.select(:category).distinct %>
-     <%= f.collection_select(:word, tag, :tag, :tag) %>
+     <%= f.select :category_id, Category.all.pluck(:name)%>
       <%= f.submit "カテゴリー検索" %>
       <% end %>
   </div>
