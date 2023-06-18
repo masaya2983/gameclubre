@@ -11,7 +11,7 @@
             <th>ステータス</th>
           </tr>
         </thead>
-         
+
         <tbody>
           <% @games.each do |game| %>
             <tr>
@@ -36,4 +36,5 @@
       </table>
       <%= paginate @games %>
     </div>
+   <%= link_to "top", admin_root_path, class: "btn btn-primary" %>
   </div>
