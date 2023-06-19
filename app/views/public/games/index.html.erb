@@ -16,6 +16,7 @@
          <%= link_to '評価の高い順', games_path(star_count: "true") %>
 
       <%= render 'public/games/index', games: @games%>
+      <%= paginate @games %>
       </div>
   </div>
 </div>
