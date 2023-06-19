@@ -32,7 +32,7 @@ class Public::GamesController < ApplicationController
    @games =Game.all
    render 'index'
   end
-end
+ end
 
 
  def edit
