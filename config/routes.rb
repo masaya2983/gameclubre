@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_scope :users do
   get '/users/sign_out' => 'devise/sessions#destroy'
   end
-  
+
   namespace :admin do
    root :to => "homes#top"
    resources :users, only: [:index, :show, :update, :destroy]
@@ -24,16 +24,20 @@ Rails.application.routes.draw do
   #post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
    root :to => "homes#top"
    get "home/about"=>"homes#about"
-   resources :users, only: [:index,:show,:edit,:update]
-   resource :relationships, only: [:create, :destroy]
-   get 'followings' => 'relationships#followings', as: 'followings'
-   get 'followers' => 'relationships#followers', as: 'followers'
-   get "search" => "searches#search"
-   resources :games, only: [:index,:create,:show,:update,:destroy,:edit]
-   resources :comments, only: [:create,:destroy]
-   resources :category, only: [:index,:create,:show,:update]
-   resource :favorites, only:[:create,:destroy]
-   resources :category, only: [:show]
+  resources :users, only: [:index,:show,:edit,:update] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
+  get "search" => "searches#search"
+  resources :games, only: [:index,:create,:show,:update,:destroy,:edit] do
+    resource :favorites, only:[:create,:destroy]
+  end
+  
+  resources :comments, only: [:create,:destroy]
+  resources :category, only: [:index,:create,:show,:update]
+  
+  resources :category, only: [:show]
  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

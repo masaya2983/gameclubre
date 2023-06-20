@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
- 
+
   def show
     @user = User.find(params[:id])
     @games = @user.games
@@ -10,7 +10,7 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-  @users =User.all
+  @users =User.all.page(params[:page])
   @game = Game.new
 
   end

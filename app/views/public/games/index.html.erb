@@ -15,7 +15,7 @@
          <%= link_to '古い順', games_path(old: "true") %>
          <%= link_to '評価の高い順', games_path(star_count: "true") %>
 
-      <%#= render 'public/games/index', games: @games%>
+      <%= render 'public/games/index', games: @games%>
 
       </div>
   </div>

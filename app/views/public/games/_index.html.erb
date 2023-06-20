@@ -24,7 +24,7 @@
       <td><%= link_to game.star%></td>
 
       <td class=<%= "favorite-" + game.id.to_s %> >
-       <%#= render "favorites/btn",game:game %>
+       <%= render "public/favorites/btn",game:game %>
        </td>
         <td><%= render "public/comments/counter", game: game %></td>
         <td><%= link_to "show", game, class: "btn btn-success" %></td>
