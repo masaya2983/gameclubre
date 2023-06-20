@@ -11,6 +11,7 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+import '@fortawesome/fontawesome-free/js/all';
 
 import Raty from "raty.js"
 window.raty = function(elem,opt) {
