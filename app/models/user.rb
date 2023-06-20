@@ -53,7 +53,7 @@ class User < ApplicationRecord
       user.save!
       user
     end
-    
+
     def active_for_authentication?
      super && (is_deleted == false)
     end
