@@ -1,33 +1,24 @@
-｝<div class='container px-5 px-sm-0'>
+<div class='container px-5 px-sm-0'>
   <div class='row'>
-   <%= render 'public/searches/form' %>
-    <div class='col-md-3'>
-
-        <h2 class="mt-3">New game</h2>
-         
-      </div>
-    <div class='col-md-8 offset-md-1'>
+   <div class='col-md-3'>
      <table class='table'>
-       <tr><%= image_tag @user.get_profile_image %></tr>
-   <tr>
-	   <th>name</th>
-	   <th><%= @user.name %></th>
-   </tr>
-   <tr>
-	   <th>introduction</th>
-	   <th><%= @user.introduction %></th>
-   </tr>
-   <tr>
-     <th>follows</th>
-      <th><%= link_to @user.followings.count, user_path(@user) %></th>
-    </tr>
-    <tr>
-      <th>followers</th>
-      <th><%= link_to @user.followers.count, user_path(@user) %></th>
-    </tr>
-</table>
-
-      <%= render 'public/games/index',games: @games %>
+    <%= render 'public/users/info', user: current_user %>
+    <br>
+    <br>
+    <ul class="navbar-nav ml-auto">
+     <li><%= link_to "ユーザー一覧へ", users_path, class:"btn btn-primary" %></li>
+    <br>
+     <li><%= link_to "ゲーム一覧へ", games_path, class:"btn btn-primary" %></li>
+    <br>
+    <li><%= link_to"新規投稿", new_game_path, class:"btn btn-primary"  %></li>
+    </ul>
     </div>
+    <div class='col-md-9'>
+      <h2>ゲームレビュー</h2>
+    <%= link_to '新しい順', games_path(latest: "true") %>
+    <%= link_to '古い順', games_path(old: "true") %>
+    <%= link_to '評価の高い順', games_path(star_count: "true") %>
+    <%= render 'public/games/index', game: @games%>
+   </div>
   </div>
 </div>

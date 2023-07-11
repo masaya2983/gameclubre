@@ -1,6 +1,6 @@
 class Public::CommentsController < ApplicationController
 
-  def create
+ def create
     @comment = current_user.comments.new(comment_params)
     if @comment.save
       flash[:notice] = "success"
@@ -9,7 +9,7 @@ class Public::CommentsController < ApplicationController
       flash.now[:danger] = "failed"
       render 'public/games/show'
     end
-  end
+ end
 
  def destroy
   @comment = Comment.find(params[:id])

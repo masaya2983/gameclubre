@@ -1,10 +1,13 @@
 class Public::GamesController < ApplicationController
+   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
    @game = Game.find(params[:id])
    @category = @game.category
    @comment = Comment.new
-   @comments = Comment.all.page(params[:page])
+   @comments = Comment.all.page(params[:page]).per(4)
+
    if @game.status_private? && @game.user !=current_user
    respond_to do |format|
     format.html { redirect_to games_path, notice: 'このページにはアクセスできません' }
@@ -12,28 +15,38 @@ class Public::GamesController < ApplicationController
    end
   end
 
-  def index
-    if params[:latest]
-      @games = Game.latest.page(params[:page])
-    elsif params[:old].present?
-      @games=Game.old.page(params[:page])
-    else
-      @games = Game.all
-    end
-    @game = Game.new
+ def index
+    @games = Game.all
+
+  if params[:latest]
+      @games = Game.latest.page(params[:page]).per(10)
+  elsif params[:old].present?
+      @games=Game.old.page(params[:page]).per(10)
+  elsif params[:star_count]
+     @games = Game.star_count.page(params[:page]).per(10)
+  else
+      @games = Game.all.page(params[:page]).per(10)
   end
+  @game = Game.new
+ end
+
 
  def create
   @game = Game.new(game_params)
   @game.user_id = current_user.id
-  if @game.save!
-   redirect_to @game,nothice: "新規投稿完了."
+
+  if @game.save
+   redirect_to @game
+   flash[:notice] ="更新完了"
   else
    @games =Game.all
-   render 'index'
+   render 'new'
   end
  end
 
+ def new
+  @game =Game.new
+ end
 
  def edit
   @game = Game.find(params[:id])
@@ -43,7 +56,8 @@ class Public::GamesController < ApplicationController
  def update
    @game = Game.find(params[:id])
    if @game.update(game_params)
-     redirect_to game_path(@game), notice: "更新完了."
+     redirect_to game_path(@game)
+     flash[:notice] ="更新完了"
    else
     render "edit"
    end

@@ -5,5 +5,3 @@ def guest_sign_in
     redirect_to user_path(user), notice: 'guestuserでログインしました。'
   end
 end
-
-

@@ -17,7 +17,16 @@
          <td><%= @game.star %></td>
         </tr>
         <tr>
-          <td><%= link_to "編集する",edit_game_path(@game.id), class:"btn btn-success" %></td>
+
+          <% if @game.is_deleted? %>
+            <td><%= link_to "復活する", admin_game_path(@game), method: :patch, data: { confirm: "to_public?" }, class:"btn btn-success" %></td>
+          <% else %>
+            <td><%= link_to "削除する", admin_game_path(@game), method: :delete, data: { confirm: "delete?" }, class:"btn btn-danger" %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td><%= link_to "index", admin_games_path, class:"btn btn-primary" %></td>
+        </tr>
         </tr>
         <tr></tr>
       </table>

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :admins,skip: [:registrations, :passwords], path: :admin, controllers:{
+ devise_for :admins,skip: [:registrations, :passwords], path: :admin, controllers:{
    sessions: "admin/sessions"
   }
+
   devise_for :users, skip: [:passwords], controllers:{
    registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
    root :to => "homes#top"
    resources :users, only: [:index, :show, :update, :destroy]
-   resources :games, only: [:index, :show, :update, :destroy]
+   resources :games, only: [:index, :show, :update, :destroy, :new ]
    #resources :category, only: [:index, :show, :edit, :update]
  end
  #ゲスト用
@@ -25,19 +26,24 @@ Rails.application.routes.draw do
    root :to => "homes#top"
    get "home/about"=>"homes#about"
   resources :users, only: [:index,:show,:edit,:update] do
+    get "check" => "customers#check"
     resource :relationships, only: [:create, :destroy]
+    patch "withdrawal" => "users#withdrawal", as: 'withdrawl'
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
+
   get "search" => "searches#search"
-  resources :games, only: [:index,:create,:show,:update,:destroy,:edit] do
+  resources :games, only: [:index,:create,:show,:update,:destroy,:edit,:new] do
     resource :favorites, only:[:create,:destroy]
+
   end
-  
+
   resources :comments, only: [:create,:destroy]
-  resources :category, only: [:index,:create,:show,:update]
-  
-  resources :category, only: [:show]
+
+
+
+  get "category" => "categories#search"
  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -1,34 +1,36 @@
 <table class='table table-hover table-inverse'>
   <thead>
     <tr>
+
       <th></th>
       <th>投稿日</th>
-       <th>カテゴリー</th>
-      <th>タイトル</th>
-      <th>レビュー</th>
-      <th>評価</th>
-
-      <th colspan="3"></th>
+       <th>ジャンル</th>
+      <th>タイトル <th>
+      <th></th>
+      <th colspan="2"></th>
      </tr>
   </thead>
   <tbody>
-   <% games.each do |game| %>
+   <% game.each do |game| %>
     <tr>
-      <td>
-        <%= image_tag game.user.get_profile_image %>
-      </td>
-      <td><%= l game.created_at %></td>
-      <td><%=  game.category_id%></td>
+
+         <td><%= link_to(game.user) do %>
+          <%= image_tag game.user.get_profile_image, size:'50x50' %>
+          <% end %>
+        </td>
+
+      <td><%= l game.created_at, format: :short %></td>
+
+      <td><%= game.category.name %></td>
       <td><%= game.title %></td>
       <td><%= game.review %></td>
-      <td><%= link_to game.star%></td>
-
       <td class=<%= "favorite-" + game.id.to_s %> >
        <%= render "public/favorites/btn",game:game %>
        </td>
         <td><%= render "public/comments/counter", game: game %></td>
-        <td><%= link_to "show", game, class: "btn btn-success" %></td>
+        <td><%= link_to "show", game, class: "btn btn-success",data: {"turbolinks"=>false}   %></td>
    　 </tr>
    <% end %>
 　</tbody>
 </table>
+<%= paginate game, params: {latest: params[:latest], old: params[:old], star_count: params[:star_count]}%>

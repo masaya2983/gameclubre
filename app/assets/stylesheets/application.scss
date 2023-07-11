@@ -14,9 +14,18 @@
  *= require_self
  */
 
-$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
- @import '@fortawesome/fontawesome-free/scss/fontawesome';
- @import '@fortawesome/fontawesome-free/scss/solid';
- @import '@fortawesome/fontawesome-free/scss/regular';
- @import '@fortawesome/fontawesome-free/scss/brands';
- @import '@fortawesome/fontawesome-free/scss/v4-shims';
+body {
+  background-color:wheat!important;
+}
+
+
+
+.swiper { width: 600px;
+  height: 300px;
+}
+
+:root {
+  --swiper-navigation-color: #ffffff;
+  --swiper-pagination-color: #ffffff;
+}
+

@@ -1,15 +1,14 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
-   <%= render 'public/searches/form' %>
-    <div class='col-md-2'>
-
-       <h2 class="mt-3">New game</h2>
-      <%= render 'public/games/form', game: @game %>
+    <div class='col-md-3'>
+　　　　<%= render 'public/users/info', user: current_user %>
     </div>
-    <div class='col-md-8 offset-md-1'>
-      <%= render 'public/users/info', user: current_user %>
+    <div class='col-md-9'>
+
       <h2>Users</h2>
       <%= render 'public/users/index',users: @users %>
+       <%= link_to "TOP",user_path(current_user),class:"btn btn-primary" %>
+       <%= link_to "ゲーム一覧へ", games_path, class:"btn btn-primary" %>
     </div>
   </div>
 </div>

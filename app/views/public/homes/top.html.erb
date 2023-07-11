@@ -1,20 +1,53 @@
 <div class="container">
   <div class="row">
    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
-     <div class="btn-wrapper col-10 mx-auto">
+     <div class="btn-wrapper col-12 mx-auto">
+       <div class="swiper">
+        <div class="swiper-wrapper">
+         <div class="swiper-slide text-center">
+          <%= image_tag 'gameicon201.png' %>
+         </div>
+          <div class="swiper-slide text-center">
+          <%= image_tag 'gameicon202.png' %>
+         </div>
+         <div class="swiper-slide text-center">
+          <%= image_tag 'gameicon203.png' %>
+         </div>
+         <div class="swiper-slide text-center">
+          <%= image_tag 'gameicon204.png' %>
+         </div>
+         <div class="swiper-slide text-center">
+          <%= image_tag 'gameicon205.png' %>
+         </div>
+         <div class="swiper-slide text-center">
+          <%= image_tag 'gameicon206.png' %>
+         </div>
+        </div>
+         <div class="swiper-padenation"></div>
+          <!-- ページネーションの要素 -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <!-- ナビゲーションボタン （前、次） -->
+          <div class="swiper-scrollbar"></div>
+       </div>
+       <br>
+       <br>
+　　　　	<h2><span>gameclubにようこそ</span></h2>
+　　　　	<h4>皆さんが持つゲームの情報を共有しましょう</h4>
+       <br>
+       <div class="row">
+        <%= link_to 'ゲストログイン（閲覧用）',user_guest_sign_in_path, class: "btn btn-info btn-block mb-3 sigm_in", method: :post %>
+       </div>
 
-             <div class="row">
-              <%= link_to 'ゲストログイン（閲覧用）',user_guest_sign_in_path, class: "btn btn-info btn-block mb-3 sigm_in", method: :post %>
-             </div>
+       <div class="row">
+        <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-block mb-3 sign_in" %>
+       </div>
 
-            <div class="row">
-          <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-block mb-3 sign_in" %>
-            </div>
-
-            <div class="row">
-              <%= link_to 'sign Up',new_user_registration_path, class: "btn btn-info btn-block mb-3 sign_up" %>
-              </div>
-      </div>
-    </div>
+       <div class="row">
+        <%= link_to 'sign Up',new_user_registration_path, class: "btn btn-info btn-block mb-3 sign_up" %>
+       </div>
+  　  </div>
+   </div>
   </div>
 </div>
+

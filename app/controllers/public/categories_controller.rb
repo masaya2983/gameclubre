@@ -1,12 +1,8 @@
 class Public::CategoriesController < ApplicationController
-  def show
-   @categories = Category.all
-   @category = Category.find(params[:id])
-  end
-  
   def search
-    @word = params[:word]
-    @games = Game.where("category LIKE?,""%#{@word}%")
-    render "searches/result"
+    @model = params[:model]
+		@content = params[:content]
+    @games = Game.where(category_id: params[:category])
+    render "public/searches/result"
   end
 end

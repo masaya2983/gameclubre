@@ -1,7 +1,7 @@
 class Admin::GamesController < ApplicationController
     before_action :authenticate_admin!
   def index
-    @games = Game.order(created_at: :desc).page(params[:page])
+    @games = Game.order(created_at: :desc).page(params[:page]).per(6)
   end
   
   def show
@@ -10,15 +10,17 @@ class Admin::GamesController < ApplicationController
 
   def update
      game = Game.find(params[:id])
-    if game.update(user_params)
+    if game.update(is_deleted: false)
       flash[:notice] = "更新に成功しました"
-      redirect_to admin_user_path(user.id)
-    else
-      flash[:notice] = "更新に失敗しました"
-      render :edit
+      redirect_to admin_game_path(game.id)
+   
     end
   end
   
   def destroy
+     game = Game.find(params[:id])
+    game.update!(is_deleted: true)
+    flash[:notice] = "success"
+    redirect_to admin_game_path(game)
   end
 end

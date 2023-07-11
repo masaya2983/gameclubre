@@ -1,22 +1,27 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
-   <%#= render 'public/searches/form' %>
     <div class='col-md-3'>
       <h4>game-title</h4>
       <div>
         <%= @game.title %>
       </div>
+      <div>
+        <small>
+          <%= @game.category.name %>
+        </small>
+      </div>
 
     </div>
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-md-11 '>
       <table class=table>
         <thead>
           <tr>
             <th>image</th>
-            <th>id</th>
-            <th>title</th>
-            <th>review</th>
-            <th></th>
+            <th>カテゴリー名</th>
+            <th>ゲームタイトル</th>
+            <th>レビュー</th>
+
+
             <th colspan=2></th>
           </tr>
         </thead>
@@ -27,23 +32,28 @@
               <%= @game.user.name %>
             <% end %>
           </td>
-          <td> <%= @category.id %></td>
+          <td> <%= @game.category.name %></td>
           <td><%= link_to @game.title %></td>
           <td><%= @game.review %></td>
-          <td class=<%= "favorite-" + @game.id.to_s %> >
-            <%# render "public/favorites/btn", game: @game %>
-          </td>
+          <td> <%= render "public/games/static.rate", game: @game %></td>
+          </tr>
+        
+       　 <tr>
           <% if @game.user == current_user %>
-            <td><%= link_to '編集',edit_game_path(@game), class: "btn btn-sm btn-success edit_game_#{@game.id}" %></td>
+            <th><%= link_to '編集',edit_game_path(@game), class: "btn btn-sm btn-success edit_game_#{@game.id}" %></td>
             <td><%= link_to '削除', @game, method: :delete, data: { confirm: '本当に消しますか？'}, class: "btn btn-sm btn-danger" %></td>
           <% end %>
         </tr>
       </table>
+       
       <div class="comments-index">
         comments
         <%= render "public/comments/index", game: @game %>
       </div>
+      <%= paginate @comments %>
       <%= render "public/comments/form", game: @game, comment: @comment %>
+      <%= link_to "戻る", games_path, class:"btn btn-primary" %>
+      <%= link_to "TOP",user_path(current_user),class:"btn btn-primary" %>
     </div>
   </div>
 </div>

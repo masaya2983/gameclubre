@@ -8,6 +8,8 @@ environment.plugins.prepend(
     $: 'jquery/src/jquery',
     jQuery: 'jquery/src/jquery',
     jquery: 'jquery/src/jquery',
+    Swiper: 'swiper/swiper-bundle',
     Popper: 'popper.js'
+
   })
 )

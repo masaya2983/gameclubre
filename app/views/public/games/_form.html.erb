@@ -7,8 +7,8 @@
 </div>
 <div class="form-group">
  <%= f.label(:private,for: nil, class:'post-status_label')do %>
-   <%= I18n.t('activerecord.attributes.game.statuses.private') %>
   <%= f.radio_button :status, :private %>
+   <%= I18n.t('activerecord.attributes.game.statuses.private') %>
   <% end %>
   </div>
   <div class="form-group">
@@ -22,18 +22,19 @@
 </div>
 
 <div class="form-grup row" id="star">
- <%= f.label :star,'評価',class:'col-md-3 col-form-label' %>
- <%= f.hidden_field :star, id: :review_star %>
+ <%= f.label :star,'評価' %>
+ 
  <div id ="post_raty"></div>
 </div>
 <script>
 $(document).on('turbolinks:load', function() {
     let elem = document.querySelector('#post_raty');
+    elem.innerHTML = '';
     let opt = {
         starOn: "<%= asset_path('star-on.png')%>",
         starOff: "<%= asset_path('star-off.png')%>",
         scoreName:'game[star]',
-        score: <%= game.star || 0 %>
+       score: <%= game&.star || 0 %>
     };
    raty(elem,opt);
 });

@@ -5,10 +5,10 @@ class Public::SearchesController < ApplicationController
 		@model = params[:model]
 		@content = params[:content]
 		@method = params[:method]
-		if @model == 'user'
-			@records = User.search_for(@content, @method)
-		else
-			@records = Game.search_for(@content, @method)
-		end
+		 
+		  @game = Game.new
+	
+			@games = Game.search_for(@content, @method).page(params[:page]).per(4)
+
 	end
 end

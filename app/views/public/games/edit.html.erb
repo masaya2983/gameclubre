@@ -1,3 +1,15 @@
+<%= flash[:notice] %>
+  <%= form_with model:@book do|f|%>
+  <% if @game.errors.any? %>
+   <%= @game.errors.count %>errors prohibited this book from being saved
+  <div id="error_explanation">
+     <% @game.errors.full_messages.each do|message| %>
+      <li><%= message %></li>
+    <% end %>
+   </ul>
+    </div>
+  <% end %>
+<% end %>
 <div class='container'>
   <div class='row'>
 

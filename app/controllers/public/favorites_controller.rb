@@ -1,6 +1,6 @@
 class Public::FavoritesController < ApplicationController
 
-  def create
+ def create
    game = Game.find(params[:game_id])
    @favorite = current_user.favorites.new(game_id: game.id)
    @favorite.save
