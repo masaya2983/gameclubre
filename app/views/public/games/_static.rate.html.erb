@@ -1,0 +1,12 @@
+<div id="show-stars"></div>
+ <script>
+            let showRateElement = document.querySelector('#show-stars');
+            let showOpt = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              scoreName: 'game[star]',
+              score: "<%= @game.star %>",
+              readOnly: true
+            };
+            window.raty(showRateElement, showOpt);
+          </script>	

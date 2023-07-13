@@ -1,0 +1,40 @@
+<div class='container px-5 px-sm-0'>
+ <div class="d-flex">
+   <%= render 'public/searches/form' %>
+   <%= render 'public/categories/category_searched' %>
+  </div>
+  <div class='row'>
+   <table class: "table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th></th>
+　  <%= link_to '新しい順', games_path(latest: "true") %>
+    <%= link_to '古い順', games_path(old: "true") %>
+    <%= link_to '評価の高い順', games_path(star_count: "true") %>
+      <th>Title</th>
+      <th>Review</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <% @games.each do |game| %>
+
+  <tbody>
+
+    <tr>
+      <td><%= link_to(game.user) do %>
+          <%= image_tag game.user.get_profile_image, size:'50x50' %>
+          <% end %>
+        </td>
+      <td><%= game.title %></td>
+      <td><%= game.category.name %></td>
+       <td><%= game.review %></td>
+      <td><%= render "public/favorites/btn", game: game %></td>
+      <td>コメント数<%= game.comments.count %></td>
+      <td><%= link_to game.star%></td>
+      <td><%= link_to "show", game, class: "btn btn-success" %></td>
+    </tr>
+  </tbody>
+    <% end %>
+</table>
+</div>
+</div>

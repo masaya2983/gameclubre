@@ -49,7 +49,12 @@ class Public::GamesController < ApplicationController
  end
 
  def edit
-  @game = Game.find(params[:id])
+   @game = Game.find(params[:id])
+    if @game.user == current_user
+      render "edit"
+    else
+        redirect_to games_path
+    end
  end
 
 
@@ -59,6 +64,7 @@ class Public::GamesController < ApplicationController
      redirect_to game_path(@game)
      flash[:notice] ="更新完了"
    else
+    @games=Game.all
     render "edit"
    end
  end
