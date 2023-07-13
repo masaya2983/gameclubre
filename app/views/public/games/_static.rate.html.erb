@@ -1,12 +1,17 @@
-<div id="show-stars"></div>
- <script>
-            let showRateElement = document.querySelector('#show-stars');
-            let showOpt = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              scoreName: 'game[star]',
-              score: "<%= @game.star %>",
-              readOnly: true
-            };
-            window.raty(showRateElement, showOpt);
-          </script>	
+div id="rate_<%= book.id %>"></div>
+<script>
+$(document).on('turbolinks:load', function() {
+  let elem = document.querySelector('#rate_<%= game.id %>');
+  if (elem == null) return;
+
+  elem.innerHTML = "";
+  let opt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: "<%= game.star %>",
+    readOnly: true,
+  };
+  raty(elem, opt);
+});
+</script>

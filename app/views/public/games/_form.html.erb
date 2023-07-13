@@ -1,45 +1,50 @@
 <%= form_with model: game, local:true do |f|%>
-<div class="form-group">
-<%= f.label(:pubulic, for: nil, class: 'game-status_label' )do %>
- <%= f.radio_button :status, :public %>
- <%= I18n.t('activerecord.attributes.game.statuses.public') %>
+  <div class="form-group">
+    <%= f.label(:pubulic, for: nil, class: 'game-status_label' )do %>
+     <%= f.radio_button :status, :public %>
+     <%= I18n.t('activerecord.attributes.game.statuses.public') %>
  <% end %>
-</div>
-<div class="form-group">
- <%= f.label(:private,for: nil, class:'post-status_label')do %>
-  <%= f.radio_button :status, :private %>
-   <%= I18n.t('activerecord.attributes.game.statuses.private') %>
-  <% end %>
   </div>
   <div class="form-group">
-  <%= f.label :category_id,"カテゴリー"%>
-  <%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: true }, { class: "form-control" } %>
+   <%= f.label(:private,for: nil, class:'post-status_label')do %>
+    <%= f.radio_button :status, :private %>
+    <%= I18n.t('activerecord.attributes.game.statuses.private') %>
+   <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :category_id,"カテゴリー"%>
+    <%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: true }, { class: "form-control" } %>
 </div>
 
-<div class="form-grup">
-  <%= f.label :title ,"タイトル"%>
-  <%= f.text_field :title, class: 'form-control game_title' %>
-</div>
-
-<div class="form-grup row" id="star">
- <%= f.label :star,'評価' %>
- 
- <div id ="post_raty"></div>
-</div>
+  <div class="form-grup">
+    <%= f.label :title ,"タイトル"%>
+    <%= f.text_field :title, class: 'form-control game_title' %>
+  </div>
+ <% if game.id.nil? %>
+  <div class="form-grup row" id="star">
+     <%= f.label :star,'評価' %>
+     <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+       <div id ="post_raty"></div>
+  </div>
 <script>
 $(document).on('turbolinks:load', function() {
     let elem = document.querySelector('#post_raty');
+    if (elem == null) return;
+    
     elem.innerHTML = '';
     let opt = {
         starOn: "<%= asset_path('star-on.png')%>",
         starOff: "<%= asset_path('star-off.png')%>",
         scoreName:'game[star]',
-       score: <%= game&.star || 0 %>
     };
    raty(elem,opt);
 });
 </script>
-
+<% else %>
+    <div class="form-group">
+      <%= render "public/games/static_rate", game: game %>
+    </div>
+  <% end %>
 
 <div class="form-group">
   <%= f.label:review,"レビュー"%>
