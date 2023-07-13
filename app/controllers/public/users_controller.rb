@@ -7,7 +7,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @games = @user.games.page(params[:page]).per(10)
     @game = Game.new
-    
+
   end
 
   def index
@@ -43,13 +43,7 @@ class Public::UsersController < ApplicationController
   redirect_to root_path
  end
 
-  def followings
-    @users = @user.followings
-  end
 
-  def followers
-    @users = @user.followers
-  end
  private
 
 def user_params
